@@ -1,18 +1,78 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-/* Common styles */
-@import url('./reset.css');
-@import url('./base.css');
-@import url('./container.css');
-@import url('./animations.css');
+* {
+  box-sizing: border-box;
+}
 
-/* Sections style */
-@import url('./header.css');
-@import url('./vite-promo.css');
-@import url('./badges.css');
-@import url('./back-link.css');
-@import url('./footer.css');
+body {
+  padding: 30px;
+  background-color: #fafafa;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img {
+  width: 100%; /* Зображення займає всю ширину картки */
+  height: 100%; /* Зображення займає всю висоту картки */
+  object-fit: cover; /* Розтягує зображення, зберігаючи пропорції */
+}
+
+.search-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 32px;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  width: calc((100% - 2 * 24px) / 3);
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #808080;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-shrink: 2;
+}
+
+.info_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-size: 12px;
+  line-height: 16px;
+  color: #2e2f42;
+}
+
+.search-form {
+  display: flex;
+  width: 360px;
+  margin: 0 auto;
+  margin-bottom: 32px;
+}
+
+.search-input {
+  height: 40px;
+  flex-grow: 1;
+  font-size: 18px;
+  padding-left: 16px;
+  border-radius: 4px 4px 4px 4px;
+}
+
+.btn {
+  width: 91px;
+  height: 40px;
+
+  border: none;
+  color: #fff;
+  background-color: #4e75ff;
+  border-radius: 8px 8px 8px 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
