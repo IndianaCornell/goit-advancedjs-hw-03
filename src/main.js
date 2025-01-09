@@ -23,14 +23,14 @@ function hideLoader() {
   loader.style.display = 'none';
 }
 
-hideLoader();
-
 inputSearch.addEventListener('input', event => {
   search = event.currentTarget.value;
 });
 
 fetchSearchBtn.addEventListener('click', event => {
   event.preventDefault();
+  showLoader();
+  console.log(showLoader);
 
   if (!search) {
     iziToast.error({
@@ -40,6 +40,8 @@ fetchSearchBtn.addEventListener('click', event => {
     return;
   }
 
+  searchList.innerHTML = '';
+
   searchImages(search)
     .then(images => {
       if (images.hits.length === 0) {
@@ -48,25 +50,25 @@ fetchSearchBtn.addEventListener('click', event => {
           message:
             'Sorry, there are no images matching your search query. Please try again!',
         });
+        searchList.innerHTML = '';
         return;
       }
 
-      showLoader();
+      setTimeout(() => {
+        hideLoader();
+        const galleryMarkup = createGalleryCards(images.hits);
+        searchList.insertAdjacentHTML('beforeend', galleryMarkup);
 
-      searchList.innerHTML = '';
-
-      const galleryMarkup = createGalleryCards(images.hits);
-      searchList.insertAdjacentHTML('beforeend', galleryMarkup);
-
-      if (!lightbox) {
-        lightbox = new SimpleLightbox('.search-list a', {
-          captions: true,
-          captionsData: 'alt',
-          captionDelay: 250,
-        });
-      } else {
-        lightbox.refresh();
-      }
+        if (!lightbox) {
+          lightbox = new SimpleLightbox('.search-list a', {
+            captions: true,
+            captionsData: 'alt',
+            captionDelay: 250,
+          });
+        } else {
+          lightbox.refresh();
+        }
+      }, 1000);
     })
     .catch(error => {
       iziToast.error({
@@ -75,7 +77,5 @@ fetchSearchBtn.addEventListener('click', event => {
       });
       console.error('Error fetching images:', error);
     })
-    .finally(() => {
-      hideLoader();
-    });
+    .finally(() => {});
 });

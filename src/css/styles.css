@@ -79,6 +79,7 @@ img {
 }
 
 .loader {
+  display: none;
   margin-top: 300px;
   position: relative;
   width: 120px;
