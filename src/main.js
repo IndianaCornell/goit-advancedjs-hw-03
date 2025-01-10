@@ -55,21 +55,20 @@ fetchSearchBtn.addEventListener('click', event => {
         return;
       }
 
-      setTimeout(() => {
-        hideLoader();
-        const galleryMarkup = createGalleryCards(images.hits);
-        searchList.insertAdjacentHTML('beforeend', galleryMarkup);
+      hideLoader();
+      console.log(hideLoader);
+      const galleryMarkup = createGalleryCards(images.hits);
+      searchList.insertAdjacentHTML('beforeend', galleryMarkup);
 
-        if (!lightbox) {
-          lightbox = new SimpleLightbox('.search-list a', {
-            captions: true,
-            captionsData: 'alt',
-            captionDelay: 250,
-          });
-        } else {
-          lightbox.refresh();
-        }
-      }, 1000);
+      if (!lightbox) {
+        lightbox = new SimpleLightbox('.search-list a', {
+          captions: true,
+          captionsData: 'alt',
+          captionDelay: 250,
+        });
+      } else {
+        lightbox.refresh();
+      }
     })
     .catch(error => {
       iziToast.error({
