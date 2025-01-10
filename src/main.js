@@ -29,8 +29,6 @@ inputSearch.addEventListener('input', event => {
 
 fetchSearchBtn.addEventListener('click', event => {
   event.preventDefault();
-  showLoader();
-  console.log(showLoader);
 
   if (!search) {
     iziToast.error({
@@ -42,6 +40,8 @@ fetchSearchBtn.addEventListener('click', event => {
 
   searchList.innerHTML = '';
 
+  showLoader();
+
   searchImages(search)
     .then(images => {
       if (images.hits.length === 0) {
@@ -51,7 +51,6 @@ fetchSearchBtn.addEventListener('click', event => {
             'Sorry, there are no images matching your search query. Please try again!',
         });
         searchList.innerHTML = '';
-        hideLoader();
         return;
       }
 
