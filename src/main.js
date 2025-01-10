@@ -55,8 +55,6 @@ fetchSearchBtn.addEventListener('click', event => {
         return;
       }
 
-      hideLoader();
-      console.log(hideLoader);
       const galleryMarkup = createGalleryCards(images.hits);
       searchList.insertAdjacentHTML('beforeend', galleryMarkup);
 
@@ -77,5 +75,7 @@ fetchSearchBtn.addEventListener('click', event => {
       });
       console.error('Error fetching images:', error);
     })
-    .finally(() => {});
+    .finally(() => {
+      hideLoader();
+    });
 });
